@@ -1,5 +1,16 @@
 #!/bin/bash
 
+###########
+#About: it will list the users accessing the repos from specific organization
+#Input: export username, token with respect to repo
+#
+#Owner: madhuri380
+#
+
+
+#helper()
+
+
 # GitHub API URL
 API_URL="https://api.github.com"
 
@@ -36,7 +47,19 @@ function list_users_with_read_access {
     fi
 }
 
+# Function to validate input
+ function helper { 
+   expected_cmd_args=2
+	 if [ $# -ne $expected_cmd_args ]; then
+           echo "please execute the script with required cmd args"
+	   echo "Usage: ./list-users.sh <repo_owner> <repo_name>"
+	   exit 1
+        fi
+   }
+ 
+
 # Main script
 
+helper "$a"
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}..."
 list_users_with_read_access
